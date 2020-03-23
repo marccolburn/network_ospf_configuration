@@ -1,0 +1,5 @@
+---
+- name: Run Junos OSPF Commands
+  junos_config:
+    lines: "{{ lookup('template', 'junos_ospf_config.j2'.split('\n') }}"
+    comment: Update ospf config
