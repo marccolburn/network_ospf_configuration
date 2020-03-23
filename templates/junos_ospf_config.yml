@@ -1,0 +1,13 @@
+set routing-options router-id {{ router_id }}
+{% for area in ospf_areas %}
+{% for interface in area.interfaces %}
+{% if interface.type == "p2p" %}
+set protocols ospf area {{ area.id }} interface {{ interface.name }} interface-type p2p
+{% else %}
+set protocols ospf area {{ area.id }} interface {{ interface.name }}
+{% endif %}
+{% if interface.passive == True %}
+set protocols ospf area {{ area.id }} interface {{ interface.name }} passive
+{% endif %}
+{% endfor %}
+{% endfor %}
