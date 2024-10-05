@@ -1,0 +1,5 @@
+---
+- name: Remove Junos OSPF Commands
+  junos_config:
+    lines: "{{ lookup('template', 'junos_ospf_remove.j2').split('\n') }}"
+    comment: Remove ospf config

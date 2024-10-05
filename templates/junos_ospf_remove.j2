@@ -1,3 +1,6 @@
 {% for area in ospf_areas %}
 delete protocols ospf area {{ area.id }}
 {% endfor %}
+{% if ospf_settings.export is defined %}
+delete protocols ospf export {{ ospf_settings.export }}
+{% endif %}

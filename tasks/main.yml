@@ -1,3 +1,9 @@
 ---
-- name: Import {{ ansible_network_os }} tasks
+- name: Import {{ ansible_network_os }} OSPF Commands
   include_tasks: "{{ ansible_network_os }}_ospf_config.yml"
+  when: ospf_remove == False
+
+- name: Remove {{ ansible_network_os }} OSPF Commands
+  include_tasks: "{{ ansible_network_os }}_ospf_remove.yml"
+  when: ospf_remove == True
+

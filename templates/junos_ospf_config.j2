@@ -10,7 +10,11 @@ set protocols ospf area {{ area.id }} interface {{ interface.name }}
 set protocols ospf area {{ area.id }} interface {{ interface.name }} passive
 {% endif %}
 {% endfor %}
-{% if area.export is defined %}
-set protocols ospf area {{ area.id }} export {{ area.export }}
+{% if area.stub is defined %}
+set protocols ospf area {{ area.id }} stub
 {% endif %}
 {% endfor %}
+{% if ospf_settings.export is defined %}
+set protocols ospf export {{ ospf_settings.export }}
+{% endif %}
+
