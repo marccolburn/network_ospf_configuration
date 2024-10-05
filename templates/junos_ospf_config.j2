@@ -11,7 +11,14 @@ set protocols ospf area {{ area.id }} interface {{ interface.name }} passive
 {% endif %}
 {% endfor %}
 {% if area.stub is defined %}
+{% if area.stub.no_summaries is defined %}
+set protocols ospf area {{ area.id }} stub no-summaries
+{% else %}
 set protocols ospf area {{ area.id }} stub
+{% endif %}
+{% if area.stub.default is defined %}
+set protocols ospf area {{ area.id }} stub default-metric {{ area.stub.default }}
+{% endif %}
 {% endif %}
 {% endfor %}
 {% if ospf_settings.export is defined %}
