@@ -21,7 +21,11 @@ set protocols ospf area {{ area.id }} stub default-metric {{ area.stub.default }
 {% endif %}
 {% endif %}
 {% if area.nssa is defined %}
+{% if area.nssa.no_summaries is defined %}
+set protocols ospf area {{ area.id }} nssa no-summaries
+{% else %}
 set protocols ospf area {{ area.id }} nssa
+{% endif %}
 {% endif %}
 {% endfor %}
 {% if ospf_settings.export is defined %}
